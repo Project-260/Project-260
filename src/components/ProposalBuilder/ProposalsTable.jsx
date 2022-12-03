@@ -1,8 +1,8 @@
 import { Table } from '@gnosis.pm/safe-react-components'
 import { useState } from 'react'
-import RoleRowView from './RoleRowView'
+import ProposalRowView from './ProposalRowView'
 
-const RolesTable = () => {
+const ProposalsTable = () => {
   const headerCells = [
     {
       id: 'roleAddress',
@@ -19,7 +19,7 @@ const RolesTable = () => {
   const rows = [
     {
       id: '1',
-      collapsibleContent: <RoleRowView id={'1'} />,
+      collapsibleContent: <ProposalRowView id={'1'} />,
       cells: [
         {
           content: '0x12312312414',
@@ -31,7 +31,7 @@ const RolesTable = () => {
     },
     {
       id: '2',
-      collapsibleContent: <RoleRowView id={'2'} />,
+      collapsibleContent: <ProposalRowView id={'2'} />,
       cells: [
         {
           content: '0x12312312414',
@@ -60,4 +60,4 @@ const RolesTable = () => {
   )
 }
 
-export default RolesTable
+export default ProposalsTable

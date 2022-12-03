@@ -1,9 +1,11 @@
-import { Title } from '@gnosis.pm/safe-react-components'
+import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
+import { Grid } from '@material-ui/core'
+import NewProposals from 'components/NewProposals'
 import React from 'react'
-import { Container } from './components/common'
-import RoleBuilder from './components/RoleBuilder'
+import RoleBuilder from './components/ProposalBuilder'
 
 const SafeApp = (): React.ReactElement => {
+  const { safe } = useSafeAppsSDK()
   // const submitTx = useCallback(async () => {
   //   try {
   //     const { safeTxHash } = await sdk.txs.send({
@@ -22,29 +24,20 @@ const SafeApp = (): React.ReactElement => {
   //     console.error(e)
   //   }
   // }, [safe, sdk])
+  const { isReadOnly } = safe
 
   return (
-    <>
-      <Container>
-        <Title size="sm">Asset Management</Title>
+    <Grid container spacing={4}>
+      {isReadOnly && (
+        <Grid item xs={12}>
+          <NewProposals />
+        </Grid>
+      )}
+      <Grid item xs={12}>
         <RoleBuilder />
-      </Container>
-    </>
+      </Grid>
+    </Grid>
   )
-
-  // return (
-  //   <Container>
-  //     <Title size="md">Safe: {safe.safeAddress}</Title>
-
-  //     <Button size="lg" color="primary" onClick={submitTx}>
-  //       Click to send a test transaction
-  //     </Button>
-
-  //     <Link href="https://github.com/gnosis/safe-apps-sdk" target="_blank" rel="noreferrer">
-  //       Documentation
-  //     </Link>
-  //   </Container>
-  // )
 }
 
 export default SafeApp
