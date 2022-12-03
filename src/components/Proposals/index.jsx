@@ -2,12 +2,13 @@ import { Button, GenericModal, Icon, ModalFooterConfirmation } from '@gnosis.pm/
 import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 import { useState } from 'react'
 import ConditionBuilder from './conditionBuilder'
+import RoleNameInputView from './RoleNameInputView'
 
 const appPartners = [
   {
     id: '1',
     label: 'Sushi Swap',
-    description: 'via Uniswap Router v2',
+    description: 'via Uniswap buter v2',
     iconUrl: 'https://docs.sushi.com/img/sushilogo.png',
     enabled: false,
   },
@@ -20,7 +21,7 @@ const appPartners = [
   },
 ]
 
-const NewProposals = () => {
+const Proposals = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [modalStep, setModalStep] = useState(0)
   const [appSelected, setAppSelected] = useState(null)
@@ -63,20 +64,21 @@ const NewProposals = () => {
         )
       case 1:
         return <ConditionBuilder />
+      case 2:
+        return <RoleNameInputView />
       default:
         return <>None</>
     }
   }
 
   const next = () => {
-    if (modalStep === 1) {
+    if (modalStep <= 2) {
+      setModalStep(modalStep + 1)
       // handle submit proposal and close modal
     } else {
-      setModalStep(modalStep + 1)
     }
   }
   const prev = () => {
-    console.log({ modalStep, isModalOpen })
     if (modalStep <= 0) {
       setModalOpen(false)
       setModalStep(0)
@@ -110,4 +112,4 @@ const NewProposals = () => {
   )
 }
 
-export default NewProposals
+export default Proposals

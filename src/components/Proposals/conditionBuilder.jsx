@@ -66,6 +66,7 @@ const ConditionBuilder = () => {
       selectedAssets.add(e.target.name)
       setSelectedAssets(selectedAssets)
     }
+    setFieldValues({ ...fieldValues, asset: selectedAssets })
   }
 
   return (
@@ -122,7 +123,7 @@ const ConditionBuilder = () => {
                       value={fieldValues[key]}
                       fullWidth
                       onChange={(e) => setFieldValues({ ...fieldValues, [key]: e.target.value })}
-                      helperText="Enter the maximum amount in gwei"
+                      helperText="Enter the maximum amount"
                     />
                   </Grid>
                 </Grid>

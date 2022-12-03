@@ -1,6 +1,5 @@
 import { Tab } from '@gnosis.pm/safe-react-components'
 import { Container, Grid } from '@material-ui/core'
-import MarketplaceView from 'components/RiskManagerView/Marketplace'
 import { useState } from 'react'
 import RolesTable from './ProposalsTable'
 
@@ -24,7 +23,7 @@ const RoleBuilder = () => {
         )}
         {selectedTab === '2' && (
           <Grid item sm={12}>
-            <MarketplaceView />
+            hello
           </Grid>
         )}
       </Grid>

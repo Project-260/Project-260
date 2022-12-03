@@ -1,6 +1,6 @@
 import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 import { Grid } from '@material-ui/core'
-import NewProposals from 'components/NewProposals'
+import Proposals from 'components/Proposals'
 import React from 'react'
 import RoleBuilder from './components/ProposalBuilder'
 
@@ -30,7 +30,7 @@ const SafeApp = (): React.ReactElement => {
     <Grid container spacing={4}>
       {isReadOnly && (
         <Grid item xs={12}>
-          <NewProposals />
+          <Proposals />
         </Grid>
       )}
       <Grid item xs={12}>
