@@ -1,10 +1,7 @@
-import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 import { Table } from '@gnosis.pm/safe-react-components'
-import { getProposals } from 'integrations/project260Backend'
-import { useEffect, useState } from 'react'
-import ProposalRowView from './ProposalRowView'
+import { useState } from 'react'
 
-const ProposalsTable = () => {
+const ProposalsTable = ({ rows, type }) => {
   const headerCells = [
     {
       id: 'status',
@@ -18,42 +15,6 @@ const ProposalsTable = () => {
     },
   ]
 
-  const [rows, setRows] = useState([])
-
-  const { safe } = useSafeAppsSDK()
-  useEffect(() => {
-    async function fetchInitData() {
-      const data = await getProposals({ safeAddress: safe.safeAddress })
-
-      let result = []
-      if (data) {
-        result = data.reduce((acc, curr, idx) => {
-          const { status, title } = curr
-          acc.push({
-            id: idx,
-            collapsibleContent: <ProposalRowView data={curr} />,
-            cells: [
-              {
-                content: status,
-              },
-              {
-                content: title,
-              },
-              {
-                content: 'something',
-              },
-            ],
-          })
-          return acc
-        }, [])
-      }
-
-      setRows(result)
-    }
-
-    fetchInitData()
-  }, [safe.safeAddress])
-
   const [selectedRowIds, setSelectedRowIds] = useState(new Set())
 
   const onRowClick = (rowId) => {
@@ -66,8 +27,18 @@ const ProposalsTable = () => {
     setSelectedRowIds(cp)
   }
 
+  const filteredRows = rows.filter(({ status }) => status === type)
+
+  if (filteredRows.length === 0) return 'No proposals found'
+
   return (
-    <Table isCollapsible rows={rows} headers={headerCells} selectedRowIds={selectedRowIds} onRowClick={onRowClick} />
+    <Table
+      isCollapsible
+      rows={filteredRows}
+      headers={headerCells}
+      selectedRowIds={selectedRowIds}
+      onRowClick={onRowClick}
+    />
   )
 }
 
