@@ -7,17 +7,19 @@ import RoleNameInputView from './RoleNameInputView'
 const appPartners = [
   {
     id: '1',
-    label: 'Sushi Swap',
-    description: 'via Uniswap buter v2',
-    iconUrl: 'https://docs.sushi.com/img/sushilogo.png',
-    enabled: false,
-  },
-  {
-    id: '2',
     label: 'Aave',
     description: 'Deposit your tokens',
     iconUrl: 'https://app.aave.com/aaveLogo.svg',
     enabled: true,
+    contractAddress: '0x794a61358D6845594F94dc1DB02A252b5b4814aD',
+  },
+  {
+    id: '2',
+    label: 'Sushi Swap',
+    description: 'via Uniswap buter v2',
+    iconUrl: 'https://docs.sushi.com/img/sushilogo.png',
+    enabled: false,
+    contractAddress: '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506',
   },
 ]
 
