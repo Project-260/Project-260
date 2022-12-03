@@ -1,22 +1,21 @@
-const axios = require('axios').default;
+import axios from 'axios'
 
-const baseUrl = 'https://project260.xyz/api/v1';
+const baseUrl = 'https://api.project260.xyz/api/v1'
 
 const getProposals = async ({ safeAddress }) => {
-  const url = `${baseUrl}/proposals?safeAddress=${safeAddress}`;
-
+  const url = `${baseUrl}/proposals?safeAddress=${safeAddress}`
   const response = await axios.get(url, {
     headers: {
       'Content-Type': 'application/json',
     },
     timeout: 10000,
-  });
+  })
 
   if (response.status !== 200) {
-    throw new Error('Failed to get proposals');
+    throw new Error('Failed to get proposals')
   }
 
-  return response.data;
+  return response.data
 }
 
 const createProposal = async (data) => {
@@ -26,15 +25,15 @@ const createProposal = async (data) => {
     },
     timeout: 10000,
     body: {
-      ...data
-    }
-  });
+      ...data,
+    },
+  })
 
   if (response.status !== 201) {
-    throw new Error('Failed to create proposal');
+    throw new Error('Failed to create proposal')
   }
 
-  return response.data;
+  return response.data
 }
 
 const approveProposal = async (data) => {
@@ -44,19 +43,15 @@ const approveProposal = async (data) => {
     },
     timeout: 10000,
     body: {
-      ...data
-    }
-  });
+      ...data,
+    },
+  })
 
   if (response.status !== 200) {
-    throw new Error('Failed to approve proposal');
+    throw new Error('Failed to approve proposal')
   }
 
-  return response.data;
+  return response.data
 }
 
-module.exports = {
-  getProposals,
-  createProposal,
-  approveProposal,
-}
+export { getProposals, createProposal, approveProposal }

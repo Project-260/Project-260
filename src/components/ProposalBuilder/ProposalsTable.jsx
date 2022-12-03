@@ -1,47 +1,58 @@
+import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk'
 import { Table } from '@gnosis.pm/safe-react-components'
-import { useState } from 'react'
+import { getProposals } from 'integrations/project260Backend'
+import { useEffect, useState } from 'react'
 import ProposalRowView from './ProposalRowView'
 
 const ProposalsTable = () => {
   const headerCells = [
     {
-      id: 'roleAddress',
-      label: 'Role address',
+      id: 'status',
+      label: 'Status',
       hideSortIcon: true,
     },
     {
-      id: 'roleName',
-      label: 'Role Name',
+      id: 'title',
+      label: 'Title',
       hideSortIcon: true,
     },
   ]
 
-  const rows = [
-    {
-      id: '1',
-      collapsibleContent: <ProposalRowView id={'1'} />,
-      cells: [
-        {
-          content: '0x12312312414',
-        },
-        {
-          content: 'Some basic rule',
-        },
-      ],
-    },
-    {
-      id: '2',
-      collapsibleContent: <ProposalRowView id={'2'} />,
-      cells: [
-        {
-          content: '0x12312312414',
-        },
-        {
-          content: 'Some basic rule',
-        },
-      ],
-    },
-  ]
+  const [rows, setRows] = useState([])
+
+  const { safe } = useSafeAppsSDK()
+  useEffect(() => {
+    async function fetchInitData() {
+      const data = await getProposals({ safeAddress: safe.safeAddress })
+
+      let result = []
+      if (data) {
+        result = data.reduce((acc, curr, idx) => {
+          const { status, title } = curr
+          acc.push({
+            id: idx,
+            collapsibleContent: <ProposalRowView data={curr} />,
+            cells: [
+              {
+                content: status,
+              },
+              {
+                content: title,
+              },
+              {
+                content: 'something',
+              },
+            ],
+          })
+          return acc
+        }, [])
+      }
+
+      setRows(result)
+    }
+
+    fetchInitData()
+  }, [safe.safeAddress])
 
   const [selectedRowIds, setSelectedRowIds] = useState(new Set())
 

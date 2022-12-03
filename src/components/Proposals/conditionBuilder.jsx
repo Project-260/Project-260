@@ -17,20 +17,6 @@ const TOKENS = [
     decimals: 18,
     logoUrl: 'https://polygonscan.com/token/images/matic_32.png',
   },
-  // {
-  //   name: 'Tether USD',
-  //   symbol: 'USDT',
-  //   address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-  //   decimals: 6,
-  //   logoUrl: 'https://polygonscan.com/token/images/tether_32.png',
-  // },
-  // {
-  //   name: 'USD Coin',
-  //   symbol: 'USDC',
-  //   address: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-  //   decimals: 6,
-  //   logoUrl: 'https://polygonscan.com/token/images/centre-usdc_32.png',
-  // },
 ]
 
 // currently hard-coded for Aave
@@ -69,8 +55,6 @@ const ConditionBuilder = () => {
     }
     setFieldValues({ ...fieldValues, asset: selectedAssets })
   }
-
-  console.log({ fieldValues })
 
   return (
     <>
