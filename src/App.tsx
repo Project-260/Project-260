@@ -1,12 +1,9 @@
 import { Title } from '@gnosis.pm/safe-react-components'
 import React from 'react'
 import { Container } from './components/common'
-import ModuleBuilder from './components/ModuleBuilder'
 import RoleBuilder from './components/RoleBuilder'
 
 const SafeApp = (): React.ReactElement => {
-  // const { sdk, safe } = useSafeAppsSDK()
-
   // const submitTx = useCallback(async () => {
   //   try {
   //     const { safeTxHash } = await sdk.txs.send({
@@ -30,7 +27,6 @@ const SafeApp = (): React.ReactElement => {
     <>
       <Container>
         <Title size="sm">Asset Management</Title>
-        <ModuleBuilder />
         <RoleBuilder />
       </Container>
     </>
