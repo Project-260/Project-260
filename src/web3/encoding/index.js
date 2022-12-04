@@ -1,7 +1,5 @@
-import ethers from 'ethers';
-import Web3 from 'web3';
-import roleAbi from '../../resources/abis/zodiac/roles.json';
-import aaveV3PoolAbi from '../../resources/abis/aave/v3/pool.json';
+import Web3 from 'web3'
+import roleAbi from '../../resources/abis/zodiac/roles.json'
 
 // const encodeAaveSupply = async ({ asset, limit }) => {
 //
@@ -25,20 +23,22 @@ import aaveV3PoolAbi from '../../resources/abis/aave/v3/pool.json';
 //   }
 // }
 
-const getRoleScopeFunctionTransactionConfig = ({roleAddress, safeAddress, asset, limit }) => {
-  const web3 = new Web3();
-  const contract = new web3.eth.Contract(roleAbi, roleAddress);
+const getRoleScopeFunctionTransactionConfig = ({ roleAddress, safeAddress, asset, limit }) => {
+  const web3 = new Web3()
+  const contract = new web3.eth.Contract(roleAbi, roleAddress)
 
-  const data = contract.methods.scopeFunction(
-    0,
-    "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
-    "0x737570",
-    [true, true, true, false],
-    [0, 0, 0, 0],
-    [0, 2, 0, 0],
-    [asset, limit, safeAddress, 0],
-    3
-  ).encodeABI();
+  const data = contract.methods
+    .scopeFunction(
+      0,
+      '0x794a61358D6845594F94dc1DB02A252b5b4814aD',
+      '0x737570',
+      [true, true, true, false],
+      [0, 0, 0, 0],
+      [0, 2, 0, 0],
+      [asset, limit, safeAddress, 0],
+      3,
+    )
+    .encodeABI()
 
   const transactionConfig = {
     to: roleAddress,
@@ -46,7 +46,7 @@ const getRoleScopeFunctionTransactionConfig = ({roleAddress, safeAddress, asset,
     data,
   }
 
-  return transactionConfig;
+  return transactionConfig
 }
 
-export { getRoleScopeFunctionTransactionConfig };
+export { getRoleScopeFunctionTransactionConfig }

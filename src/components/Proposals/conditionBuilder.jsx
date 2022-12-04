@@ -40,9 +40,7 @@ const abiStruct = {
 const ConditionBuilder = () => {
   const [fieldValues, setFieldValues] = useState({})
   const [selectedMethod, setSelectedMethod] = useState(null)
-  const handleMethodSelect = (id) => {
-    setSelectedMethod(id)
-  }
+
   const [selectedAssets, setSelectedAssets] = useState(new Set())
 
   const handleAssetCheckboxOnChange = (e) => {
@@ -54,6 +52,12 @@ const ConditionBuilder = () => {
       setSelectedAssets(selectedAssets)
     }
     setFieldValues({ ...fieldValues, asset: selectedAssets })
+  }
+
+  const [selectedToken, setSelectedToken] = useState(null)
+  const handleMethodSelect = (id) => {
+    setSelectedToken(id)
+    setSelectedMethod(id)
   }
 
   return (
@@ -90,6 +94,14 @@ const ConditionBuilder = () => {
                           onChange={handleAssetCheckboxOnChange}
                         />
                       ))}
+
+                      <Select
+                        label={'asset'}
+                        placeholder="asset"
+                        items={TOKENS}
+                        activeItemId={selectedToken}
+                        onItemClick={handleMethodSelect}
+                      />
                     </Grid>
                   </Grid>
                 </Grid>

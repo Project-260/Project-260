@@ -34,6 +34,7 @@ const RoleBuilder = () => {
                 content: title,
               },
             ],
+            status,
           })
           return acc
         }, [])
