@@ -27,8 +27,7 @@ import aaveV3PoolAbi from '../../resources/abis/aave/v3/pool.json';
 
 const getRoleScopeFunctionTransactionConfig = ({roleAddress, safeAddress, asset, limit }) => {
   const web3 = new Web3();
-  const contract = web3.eth.Contract(roleAbi, roleAddress);
-  const roleContract = new ethers.Contract(roleAddress, roleAbi, ethers.getDefaultProvider());
+  const contract = new web3.eth.Contract(roleAbi, roleAddress);
 
   const data = contract.methods.scopeFunction(
     0,
@@ -36,8 +35,9 @@ const getRoleScopeFunctionTransactionConfig = ({roleAddress, safeAddress, asset,
     "0x737570",
     [true, true, true, false],
     [0, 0, 0, 0],
-    [3, 2, 0, 0],
+    [0, 2, 0, 0],
     [asset, limit, safeAddress, 0],
+    3
   ).encodeABI();
 
   const transactionConfig = {
