@@ -1,17 +1,21 @@
-import { Checkbox, Select, TextFieldInput } from '@gnosis.pm/safe-react-components'
+import { Select, TextFieldInput } from '@gnosis.pm/safe-react-components'
 import { Chip, Grid } from '@material-ui/core'
 import { useState } from 'react'
 
 const TOKENS = [
   {
+    id: 'dai',
     name: 'Dai Stablecoin',
+    label: 'DAI',
     symbol: 'DAI',
     address: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
     decimals: 18,
     logoUrl: 'https://polygonscan.com/token/images/mcdDai_32.png',
   },
   {
+    id: 'matic',
     name: 'Matic Token',
+    label: 'MATIC',
     symbol: 'MATIC',
     address: '0x0000000000000000000000000000000000001010',
     decimals: 18,
@@ -54,6 +58,10 @@ const ConditionBuilder = () => {
     setFieldValues({ ...fieldValues, asset: selectedAssets })
   }
 
+  const handleAssetSelect = (id) => {
+    // set
+  }
+
   const [selectedToken, setSelectedToken] = useState(null)
   const handleMethodSelect = (id) => {
     setSelectedToken(id)
@@ -85,7 +93,7 @@ const ConditionBuilder = () => {
                       <Chip label={'asset'} style={{ borderRadius: 2 }} />
                     </Grid>
                     <Grid item>
-                      {TOKENS.map(({ address, symbol }) => (
+                      {/* {TOKENS.map(({ address, symbol }) => (
                         <Checkbox
                           name={address}
                           label={symbol}
@@ -93,14 +101,15 @@ const ConditionBuilder = () => {
                           checked={selectedAssets.has(address)}
                           onChange={handleAssetCheckboxOnChange}
                         />
-                      ))}
+                      ))} */}
 
                       <Select
+                        name="key"
                         label={'asset'}
                         placeholder="asset"
                         items={TOKENS}
                         activeItemId={selectedToken}
-                        onItemClick={handleMethodSelect}
+                        onItemClick={handleAssetSelect}
                       />
                     </Grid>
                   </Grid>

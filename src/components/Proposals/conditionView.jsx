@@ -4,7 +4,7 @@ const ConditionView = ({ asset, limit }) => {
   return (
     <Grid container spacing={2}>
       <Grid item>
-        {asset && <>Assets: {asset.map(({ symbol }) => symbol).join(',')}</>}
+        {asset && <>Assets: {asset.symbol}</>}
         <br />
         {limit && <>Limit: {limit}</>}
       </Grid>

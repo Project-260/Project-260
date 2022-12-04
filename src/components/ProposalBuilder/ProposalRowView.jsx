@@ -10,15 +10,18 @@ const ProposalRowView = ({ data }) => {
   const {
     rules: { asset, limit },
   } = data
-  console.log({ data })
-  const handleApprove = () => {
-    const d = getRoleScopeFunctionTransactionConfig({
+
+  const handleApprove = async () => {
+    const config = getRoleScopeFunctionTransactionConfig({
       roleAddress: '0x8ff02a3D2fF1A77a3cE4488aE49Dc9e9d3aFE318',
       safeAddress: safe.safeAddress,
-      asset: asset.map(({ address }) => address),
+      asset,
       limit,
     })
-    console.log({ d })
+    // const { to, value, data } = config;
+    const response = await sdk.txs.send({ txs: [config] })
+    // const respnse = await sdk.eth.call({ ...config, from: safe.safeAddress })
+    console.log({ response })
   }
   return (
     <Grid container justifyContent="space-between">
